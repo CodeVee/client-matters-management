@@ -1,5 +1,7 @@
 using System;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using Application.Interfaces;
 using AutoMapper;
 using FluentValidation.AspNetCore;
@@ -90,7 +92,6 @@ namespace WebAPI
             #region Swagger
             services.AddSwaggerGen(c =>
             {
-                c.IncludeXmlComments(string.Format(@"{0}\ClientMatters.xml", AppDomain.CurrentDomain.BaseDirectory));
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Version = "v1",
@@ -100,11 +101,15 @@ namespace WebAPI
                     {
                         Email = "victorchike247@gmail.com",
                         Name = "Victor Onyebuchi",
-                        Url = new Uri("https://www.github.com/CodeVee")
+                        Url = new Uri("https://github.com/CodeVee")
                     },
                 });
                 c.AddFluentValidationRules();
                 c.SchemaFilter<ModelSchemaFilter>();
+
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                c.IncludeXmlComments(xmlPath);
 
             });
             #endregion
