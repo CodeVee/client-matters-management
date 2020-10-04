@@ -15,8 +15,12 @@ namespace Persistence
             //    options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"), 
             //            b => b.MigrationsAssembly(typeof(ApplicationContext).Assembly.FullName)));
 
+            //services.AddDbContext<ApplicationContext>(options =>
+            //    options.UseSqlite("Data Source=ClientMatters.db",
+            //            b => b.MigrationsAssembly(typeof(ApplicationContext).Assembly.FullName)));
+
             services.AddDbContext<ApplicationContext>(options =>
-                options.UseSqlite("Data Source=ClientMatters.db",
+                options.UseMySql(configuration.GetConnectionString("MySqlConnection"),
                         b => b.MigrationsAssembly(typeof(ApplicationContext).Assembly.FullName)));
 
             services.AddScoped<IRepositoryWrapper, RepositoryWrapper>();
