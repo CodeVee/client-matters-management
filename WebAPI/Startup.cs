@@ -1,7 +1,5 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Application.Interfaces;
 using AutoMapper;
 using FluentValidation.AspNetCore;
@@ -17,6 +15,7 @@ using Microsoft.OpenApi.Models;
 using Newtonsoft.Json.Serialization;
 using Persistence;
 using Swashbuckle.AspNetCore.Swagger;
+using WebAPI.Models;
 
 namespace WebAPI
 {
